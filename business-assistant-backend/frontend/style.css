@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    min-height: 100vh;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+}
+
+.logo h1 {
+    color: #991b1b;
+    margin-bottom: 0.25rem;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.nav-btn {
+    padding: 1rem;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.nav-btn.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #991b1b;
+    margin: 0.5rem 0;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.chat-container {
+    border: 2px solid #e2e8f0;
+    border-radius: 15px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.messages {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    background: #f7fafc;
+}
+
+.message {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 15px;
+    max-width: 80%;
+}
+
+.message.bot {
+    background: white;
+    border: 1px solid #e2e8f0;
+    margin-right: auto;
+}
+
+.message.user {
+    background: #dc2626;
+    color: white;
+    margin-left: auto;
+}
+
+.input-area {
+    display: flex;
+    padding: 1.5rem;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+    gap: 1rem;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+.input-area button {
+    padding: 1rem 2rem;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Стили для индикатора "печатает" */
+.typing-indicator {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-right: auto;
+    max-width: 80%;
+    font-style: italic;
+    color: #718096;
+}
+
+/* Анимация для новых сообщений */
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message {
+    animation: messageAppear 0.3s ease-out;
+}
+
+/* Стили для истории чата */
+.history-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid #dc2626;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.history-item.user {
+    border-left-color: #991b1b;
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        min-width: auto;
+    }
+    
+    .nav-btn {
+        white-space: nowrap;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .content {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .input-area {
+        padding: 1rem;
+        flex-direction: column;
+    }
+    
+    .input-area button {
+        width: 100%;
+    }
+}
